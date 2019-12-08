@@ -11,7 +11,7 @@ This workshop is designed to provide an introduction into the application and po
 
 Day One (Morning):  
 •	Introductory lecture (What is Geometric Morphometrics?)  
-•	Some basics in R (Environment and generating data)  
+•	Some basics in R (environment and generating data)  
 •	Organising data for morphometrics (image processing and writing data)  
 •	Geometric Transformations  
 
@@ -21,7 +21,7 @@ Day One (Afternoon):
 •	Representing shape differences (warp grids, arrows, etc.)  
 •	Exploring shape variation and testing hypotheses (PCA, multivariate regression, MANOVA, LDA and cladistics)  
 
-Day Two (Morning): 
+Day Two (Morning):  
 •	Acquiring outline data in R  
 •	Fourier Analysis (principles)   
 •	Radius Fourier Analysis  
