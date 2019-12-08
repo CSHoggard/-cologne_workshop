@@ -32,3 +32,7 @@ Day Two (Afternoon):
 •	Advanced analytical frameworks (e.g. Maximum Likelihoods and cluster techniques)  
 •	Advanced outline methods (symmetry and rectilinearity extraction)  
 •	Concluding remarks
+
+#### Software
+
+Software: All data input, manipulation and analyses will be **performed in the R Environment through geomorph (BETA version) and Momocs**. **_Please ensure R/RStudio and all files are downloaded onto your computer/laptop before or at the beginning of the workshop_**. Other digitisation methods including tpsDig2 (https://life.bio.sunysb.edu/morph/soft-dataacq.html) and GUImorph (https://github.com/GUImorph/GUImorph) will also be showcased.
