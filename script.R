@@ -39,8 +39,8 @@ library(ggtree)
 library(tidyverse)
 library(cowplot)
 
-SK1 <- read.ply("skull_1.ply", ShowSpecimen = FALSE, addNormals = FALSE) ### import .PLY file
-plot3d(SK1) ### plots the 3d mesh model
+SK1 <- read.ply("skull_1.ply", ShowSpecimen = FALSE, addNormals = TRUE) ### import .PLY file
+plot3d(SK1, col = "yellow") ### plots the 3d mesh model (colour is optional)
 buildtemplate(SK1, 23, 200) ### build a template using the first .PLY file (23 landmarks, 200 surface semilandmarks)
 
 ### The specimen you choose for your template is your most complete and definable specimen
@@ -134,9 +134,9 @@ pcasex$pc.shapes ### output (shape coordinates of the extreme ends of all PC axe
 pcasex$pc.shapes$PC1max ### e.g. PC1 max
 pcasex$rotation ### rotation values
 
-plotRefToTarget(ref, pcasex$pc.shapes$PC1max, method= "vector") ### shape change from mean shape (ref) to max PC1 (as vector)
+plotRefToTarget(ref, pcasex$pc.shapes$PC1max, method= "points") ### shape change from mean shape (ref) to max PC1 (as vector)
 
-pcalocation <- plotTangentSpace(skullgpa$coords, axis1 = 1, axis2 = 2, warpgrids = TRUE, groups = groups$Location, verbose = TRUE, label=groups$Code) ### principal component analysis
+pcalocation <- plotTangentSpace(gpaskull$coords, axis1 = 1, axis2 = 2, warpgrids = TRUE, groups = groups$Location, verbose = TRUE, label=groups$Code) ### principal component analysis
 summary(pcalocation) ### pca summary
 pcalocation$pc.shapes ### output (shape coordinates of the extreme ends of all PC axes)
 pcalocation$pc.shapes$PC1max ### e.g. PC1 max
