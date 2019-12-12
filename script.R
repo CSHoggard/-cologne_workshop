@@ -10,6 +10,7 @@
 ### [1] stats     graphics  grDevices utils  
 ### [6] methods   base
 
+### DAY ONE
 ### EXERCISE 1: R ENVIRONMENT SETUP
 ### Download all files from the GitHub Repository: https://github.com/CSHoggard/-cologne_workshop
 ### Set the working directory using the "Session/Set Working Directory" function in RStudio or through the setwd() function
@@ -181,7 +182,7 @@ lmspecimenlocation$data ### the data frame for the model
 ### EXERCISE 9: MEAN AND MEDIAN SHAPES 
 ### Produce the mean and median shapes for the tanged points (according to site)
 
-tpms <- mshapes(gpatp, FUN = mean, "Site") ### change FUN for median
+tpms <- mshapes(gpatp, FUN = median, "Site") ### change FUN for median
 panel(Ldk(tpms$Coe), names = TRUE, cex.names = 0.75, points.pch = 16, points.cex = 1.5)
 
 ### EXERCISE 10: CLUSTER ANALYSIS
@@ -197,6 +198,9 @@ cluster <- CLUST(pcatp, fac = "Site", type = "fan", dist_method = "euclidean", h
 
 ggtree(cluster, layout="rectangular") + geom_nodepoint() + geom_tiplab(hjust = -0.1) + xlim(0,0.03)
 
+KMEANS(pcatp, centers = 4)
+
+### DAY TWO
 ### EXERCISE 11: IMPORTING OUTLINE DATA
 ### Inspect the outline file by opening the file in notepad
 ### Import the handaxe outline file through the import_tps() function
