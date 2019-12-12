@@ -1,0 +1,16 @@
+LM=0
+IMAGE=Ellensbanke_1.png
+LM=0
+IMAGE=Ellensbanke_3.png
+LM=0
+IMAGE=Ellensbanke_4.png
+LM=0
+IMAGE=Eskebjerg_1_1.png
+LM=0
+IMAGE=Eskebjerg_1_2.png
+LM=0
+IMAGE=Eskebjerg_1_3.png
+LM=0
+IMAGE=Eskebjerg_1_4.png
+LM=0
+IMAGE=Eskebjerg_1_5.png

@@ -68,7 +68,7 @@ groups <- read.csv("skulls.csv", header=T, row.names=1) ### import the metadata
 is.factor(groups$Sex) ### checks factor
 is.factor(groups$Location) ### checks factor
 is.character(groups$Code) ### checks character
-groups$code <- as.character(groups$Code) ### convert to character
+groups$Code <- as.character(groups$Code) ### convert to character
 
 surfslide<-read.csv("surfslide.csv", header=TRUE) ### sliding surface semilandmarks (configuration)
 surfslide<-as.matrix(surfslide) ### convert to matrix
@@ -86,7 +86,7 @@ tanged.points <- Ldk(tanged.points$coo, fac = tanged.data, links = outline) ### 
 inspect(tanged.points)
 
 panel(tanged.points, names = TRUE) ### visualisation
-panel(tanged.points, names = TRUE, fac = "Site", cex.names = 0.3, points.pch = 16, points.cex = 0.5) ### stylistic changes
+panel(tanged.points, names = TRUE, fac = "Site", cex.names = 1, points.pch = 16, points.cex = 0.5) ### stylistic changes
 
 library(GUImorph) ### load GUImorph
 GUImorph() ### activate
@@ -123,10 +123,12 @@ tps_arr(gpatp$coo$Ellensbanke_1, gpatp$coo$Eskebjerg_1_5, shp = FALSE, amp = 1, 
 
 pcatp <- PCA(gpatp, fac = tanged.data) ### creation of the principal component class item
 pcatp$x ### principal component scores
+database <- as_df(pcatp) ### convert to ggplot object (as a data frame)
+ggplot(database, aes(PC1, PC2)) + geom_point() ### produces the ggplot object
 scree(pcatp) ### scree table
 scree_plot(pcatp) ### scree plot
 plot(pcatp) ### plots the PCA graphic
-plot(pcatp, cex = 1.5, fac = "Site", grid = FALSE, palette = col_autumn, chull.filled.alpha = 0.6, title = "Principal Component Analysis (PC1 vs. PC2)") ### customise the PCA graphic
+plot(pcatp, xax = 2, yax = 5, cex = 1.5, fac = "Site", grid = FALSE, palette = col_autumn, chull.filled.alpha = 0.6, title = "Principal Component Analysis (PC1 vs. PC2)") ### customise the PCA graphic
 
 pcasex <- plotTangentSpace(gpaskull$coords, axis1 = 1, axis2 = 2, warpgrids = TRUE, groups = groups$Sex, verbose = TRUE, label=groups$Code) ### principal component analysis
 summary(pcasex) ### pca summary
