@@ -224,7 +224,7 @@ outlinefile <- Out(handaxe$coo, fac = handaxe.data) ### creation of an outline f
 outlinefile ### call the outline file
 panel(outlinefile) ### panel all examples
 panel(outlinefile, fac = "MIS") ### panel coloured by MIS stages
-panel(outlinefile, fac = "Context") ### panel coloured by context
+panel(outlinefile, fac = "Context", palette = col_cold) ### panel coloured by context
 
 ### EXERCISE 12: PRIOR NORMALISATION
 ### Prior normalisation (EFA), all examples should be centred, scaled and closed (if open). These can be done using functions in Momocs.
@@ -272,19 +272,19 @@ View(handaxe.data) ### views the main database (again!)
 
 scree(pca1) ### produces a tibble of the proportion and cumulative percentage for the PC inertia
 scree_plot(pca1)
-PCcontrib(pca1) ### visualises the main shape changes among all handaxe (PCs)
-plot(pca1, xax = 1, yax = 2, points = FALSE, center.origin = FALSE, zoom = 1, grid = TRUE, pos.shp = "xy", size.shp = 0.4, ellipses = FALSE, chull = FALSE, chull.filled = FALSE, eigen = FALSE, rug = FALSE, title = "Principal Component Analysis (PC1 vs. PC2): XY Warps", labelsgroups=FALSE) ### produces a principal component plot (first two axes)
+PCcontrib(pca1, nax = 1:3) ### visualises the main shape changes among all handaxe (PCs)
+plot(pca1, pca1$MIS, xax = 1, yax = 2, points = TRUE, center.origin = FALSE, zoom = 1, grid = TRUE, pos.shp = "circle", size.shp = 0.3, ellipses = TRUE, chull = FALSE, chull.filled = FALSE, eigen = FALSE, rug = FALSE, title = "Principal Component Analysis (PC1 vs. PC2): XY Warps", labelsgroups=FALSE) ### produces a principal component plot (first two axes)
 plot(pca1, pca1$MIS, xax = 1, yax = 2, points = FALSE, center.origin = FALSE, zoom = 1, grid = TRUE, morphospace = FALSE, ellipses = TRUE, conf.ellipses = 0.99, chull = FALSE, chull.filled = FALSE, eigen = FALSE, rug = FALSE, title = "Principal Component Analysis (PC1 vs. PC2): Confidence Ellipses (99%)", labelsgroups=TRUE, cex.labelsgroups=1) ### produces a principal component plot (first two axes)
 
-ggplot(database, aes(MIS, PC1)) + geom_boxplot(colour = "#E69F00", fill = "#ffd475", width = 0.4) +  coord_flip() + labs(x = "Marine Isotope Stage (MIS)", y = "Principal Component 1 (67.29%)") + theme(text = element_text(size=9), axis.text.x = element_text(size=9), axis.text.y = element_text(size=9)) ### PC1 scores categorised by MIS
-ggplot(database, aes(MIS, PC2)) + geom_boxplot(colour = "#E69F00", fill = "#ffd475", width = 0.4) +  coord_flip() + labs(x = "Marine Isotope Stage (MIS)", y = "Principal Component 2 (11.46%)") + theme(text = element_text(size=9), axis.text.x = element_text(size=9), axis.text.y = element_text(size=9)) ### PC1 scores categorised by context
-ggplot(database, aes(Context, PC1)) + geom_boxplot(colour = "#E69F00", fill = "#ffd475", width = 0.5) +  coord_flip() + labs(x = "Context", y = "Principal Component 1 (67.29%)") + theme(text = element_text(size=9), axis.text.x = element_text(size=9), axis.text.y = element_text(size=9)) ### PC2 scores categorised by MIS
-ggplot(database, aes(Context, PC2)) + geom_boxplot(colour = "#E69F00", fill = "#ffd475", width = 0.5) +  coord_flip() + labs(x = "Context", y = "Principal Component 2 (11.46%)") + theme(text = element_text(size=9), axis.text.x = element_text(size=9), axis.text.y = element_text(size=9)) ### PC2 scores categorised by context
+ggplot(handaxe.data, aes(MIS, PC1)) + geom_boxplot(colour = "#E69F00", fill = "#ffd475", width = 0.4) +  coord_flip() + labs(x = "Marine Isotope Stage (MIS)", y = "Principal Component 1 (67.29%)") + theme(text = element_text(size=9), axis.text.x = element_text(size=9), axis.text.y = element_text(size=9)) ### PC1 scores categorised by MIS
+ggplot(handaxe.data, aes(MIS, PC2)) + geom_boxplot(colour = "#E69F00", fill = "#ffd475", width = 0.4) +  coord_flip() + labs(x = "Marine Isotope Stage (MIS)", y = "Principal Component 2 (11.46%)") + theme(text = element_text(size=9), axis.text.x = element_text(size=9), axis.text.y = element_text(size=9)) ### PC1 scores categorised by context
+ggplot(handaxe.data, aes(Context, PC1)) + geom_boxplot(colour = "#E69F00", fill = "#ffd475", width = 0.5) +  coord_flip() + labs(x = "Context", y = "Principal Component 1 (67.29%)") + theme(text = element_text(size=9), axis.text.x = element_text(size=9), axis.text.y = element_text(size=9)) ### PC2 scores categorised by MIS
+ggplot(handaxe.data, aes(Context, PC2)) + geom_boxplot(colour = "#E69F00", fill = "#ffd475", width = 0.5) +  coord_flip() + labs(x = "Context", y = "Principal Component 2 (11.46%)") + theme(text = element_text(size=9), axis.text.x = element_text(size=9), axis.text.y = element_text(size=9)) ### PC2 scores categorised by context
 
-figurea <- ggplot(database, aes(MIS, PC1)) + geom_boxplot(colour = "#E69F00", fill = "#ffd475", width = 0.4) +  coord_flip() + labs(x = "Marine Isotope Stage (MIS)", y = "Principal Component 1 (67.29%)") + theme(text = element_text(size=9), axis.text.x = element_text(size=9), axis.text.y = element_text(size=9)) ### PC1 scores categorised by MIS
-figureb <- ggplot(database, aes(MIS, PC2)) + geom_boxplot(colour = "#E69F00", fill = "#ffd475", width = 0.4) +  coord_flip() + labs(x = "Marine Isotope Stage (MIS)", y = "Principal Component 2 (11.46%)") + theme(text = element_text(size=9), axis.text.x = element_text(size=9), axis.text.y = element_text(size=9)) ### PC1 scores categorised by context
-figurec <- ggplot(database, aes(Context, PC1)) + geom_boxplot(colour = "#E69F00", fill = "#ffd475", width = 0.5) +  coord_flip() + labs(x = "Context", y = "Principal Component 1 (67.29%)") + theme(text = element_text(size=9), axis.text.x = element_text(size=9), axis.text.y = element_text(size=9)) ### PC2 scores categorised by MIS
-figured <- ggplot(database, aes(Context, PC2)) + geom_boxplot(colour = "#E69F00", fill = "#ffd475", width = 0.5) +  coord_flip() + labs(x = "Context", y = "Principal Component 2 (11.46%)") + theme(text = element_text(size=9), axis.text.x = element_text(size=9), axis.text.y = element_text(size=9)) ### PC2 scores categorised by context
+figurea <- ggplot(handaxe.data, aes(MIS, PC1)) + geom_boxplot(colour = "#E69F00", fill = "#ffd475", width = 0.4) +  coord_flip() + labs(x = "Marine Isotope Stage (MIS)", y = "Principal Component 1 (67.29%)") + theme(text = element_text(size=9), axis.text.x = element_text(size=9), axis.text.y = element_text(size=9)) ### PC1 scores categorised by MIS
+figureb <- ggplot(handaxe.data, aes(MIS, PC2)) + geom_boxplot(colour = "#E69F00", fill = "#ffd475", width = 0.4) +  coord_flip() + labs(x = "Marine Isotope Stage (MIS)", y = "Principal Component 2 (11.46%)") + theme(text = element_text(size=9), axis.text.x = element_text(size=9), axis.text.y = element_text(size=9)) ### PC1 scores categorised by context
+figurec <- ggplot(handaxe.data, aes(Context, PC1)) + geom_boxplot(colour = "#E69F00", fill = "#ffd475", width = 0.5) +  coord_flip() + labs(x = "Context", y = "Principal Component 1 (67.29%)") + theme(text = element_text(size=9), axis.text.x = element_text(size=9), axis.text.y = element_text(size=9)) ### PC2 scores categorised by MIS
+figured <- ggplot(handaxe.data, aes(Context, PC2)) + geom_boxplot(colour = "#E69F00", fill = "#ffd475", width = 0.5) +  coord_flip() + labs(x = "Context", y = "Principal Component 2 (11.46%)") + theme(text = element_text(size=9), axis.text.x = element_text(size=9), axis.text.y = element_text(size=9)) ### PC2 scores categorised by context
 figure <- plot_grid(figurea, figurec, figureb, figured, labels= "AUTO", ncol = 2, align = 'v') #synthesis of the four figures
 plot(figure) ### plots the figure
 ggsave("Figure.tiff", plot = last_plot(), dpi = 400, units = "mm", height = 150, width = 250) ##saves the file
@@ -293,7 +293,7 @@ ggsave("Figure.tiff", plot = last_plot(), dpi = 400, units = "mm", height = 150,
 
 lda1 <- LDA(pca1, fac = "MIS") ### creation of a discriminant analysis by MIS
 lda1  ### details of the discriminant analysis
-plot(lda1, xax = 1, yax = 2, points = TRUE, pch = 20, cex = 0.6, center.origin = FALSE, zoom = 1.8, grid = TRUE, pos.shp = "circle", size.shp = 0.6, ellipses = TRUE, ellipsesax = FALSE, conf.ellipses = 2/3, chull = FALSE, chull.filled = FALSE, eigen = FALSE, rug = FALSE) ### plots an LDA
+plot(lda1, xax = 1, yax = 2, points = TRUE, pch = 20, cex = 1, center.origin = FALSE, zoom = 1.8, grid = TRUE, pos.shp = "circle", size.shp = 0.6, ellipses = TRUE, ellipsesax = FALSE, conf.ellipses = 2/3, chull = FALSE, chull.filled = FALSE, eigen = FALSE, rug = FALSE) ### plots an LDA
 
 ### Statistical testing through a MANOVA...
 
