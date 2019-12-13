@@ -39,6 +39,7 @@ library(Momocs)
 library(ggtree)
 library(tidyverse)
 library(cowplot)
+library(Rphylip)
 
 SK1 <- read.ply("skull_1.ply", ShowSpecimen = FALSE, addNormals = TRUE) ### import .PLY file
 plot3d(SK1, col = "yellow") ### plots the 3d mesh model (colour is optional)
@@ -327,7 +328,13 @@ cor.test(handaxe.data$Length, handaxe.data$PC1)
 ### Cluster analysis...
 
 handaxe.cluster <- CLUST(pca1, fac = "MIS", type = "fan", dist_method = "euclidean", hclust_method = "complete") ### hierarchical clustering (complete)
-ggtree(handaxe.cluster, layout = "fan", branch.length = "none") + theme_tree() + geom_nodepoint() + geom_point(size = 1) 
+ggtree(handaxe.cluster, layout = "rectangular") + theme_tree() + geom_nodepoint() + geom_point(size = 1) 
+
+### Maximum Likelihood
+handaxescores <- pca1$x[,1:20]
+handaxescores <- as.matrix(handaxescores)
+
+testml <- Rcontml(handaxescores)
 
 ### Self-organising maps (SOM)...
 
